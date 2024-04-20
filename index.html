@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            border: 1px solid red;
+        }
+        
+        .green {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="link">Проверка ссылки:</label>
+        <input type="text" id="link" oninput="checkLink(this)">
+        <br>
+        <label for="email">Проверка email:</label>
+        <input type="text" id="email" oninput="checkEmail(this)">
+    </form>
+    <script>
+        function checkLink(input) {
+            const value = input.value;
+            const isValid = (value.includes("https://") || value.includes("http://")) && value.includes(".");
+            updateInputStyle(input, isValid);
+        }
+
+        function checkEmail(input) {
+            const value = input.value;
+            const isValid = value.includes("@") && value.includes(".");
+            updateInputStyle(input, isValid);
+        }
+
+        function updateInputStyle(input, isValid) {
+            if (isValid) {
+                input.classList.remove("red");
+                input.classList.add("green");
+            } else {
+                input.classList.remove("green");
+                input.classList.add("red");
+            }
+        }
+    </script>
+</body>
+</html>
